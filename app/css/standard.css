@@ -1,0 +1,148 @@
+p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+div#content {
+    width: 302px;
+    border: solid 1px #1B1B1E;
+    position: absolute;
+    left: 25vw;
+    background-color: #373F51;
+    padding: 1px;
+}
+
+div#content form input#result {
+    width: 280px;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    background-color: #373F51;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 50px;
+    color: #D8DBE2;
+}
+
+div#content form div#memory,
+div#content form div#line1,
+div#content form div#line2 {
+    width: 300px;
+    height: 58px;
+}
+
+div#content form div#memory {
+    width: 300px;
+    height: 38px;
+}
+
+div#content form div#memory ul,
+div#content form div#line1 ul,
+div#content form div#line2 ul {
+    list-style-type: none;
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+}
+
+div#content form div#memory ul li {
+    border: none;
+    width: 48px;
+    height: 36px;
+    margin: 1px;
+}
+
+div#content form div#memory ul li button {
+    border: none;
+    width: 48px;
+    height: 36px;
+    background-color: #373F51;
+    color: #D8DBE2;
+    transition-duration: 0.5s;
+}
+
+div#content form div#line1 ul li,
+div#content form div#line2 ul li {
+    width: 73px;
+    margin: 1px;
+}
+
+div#content form div#line1 ul li button,
+div#content form div#line2 ul li button {
+    width: 73px;
+    height: 56px;
+    border: none;
+    padding: 0px;
+    background-color: #D8DBE2;
+    transition-duration: 0.5s;
+}
+
+div#content form div#line1 ul li button:hover,
+div#content form div#line2 ul li button:hover,
+div#content form div#memory ul li button:hover {
+    background-color: #58A4B0;
+    transition-duration: 0.2s;
+}
+
+div#content form div#line1 ul li button:active,
+div#content form div#line2 ul li button:active,
+div#content form div#memory ul li button:active {
+    background-color: #366a72;
+}
+
+div#content form div#memory ul li, 
+div#content form div#line1 ul li,
+div#content form div#line2 ul li,
+div#content form div#numbers {
+    float: left;
+}
+
+div#content form div#numbers {
+    width: 225px;
+}
+
+div#content form div#numbers ul,
+div#content form div#rightLine ul {
+    list-style-type: none;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+div#content form div#numbers ul li,
+div#content form div#rightLine ul li {
+    float: left;
+    width: 73px;
+    height: 56px;
+    margin: 1px;
+    transition-duration: 0.5s;
+}
+
+div#content form div#numbers ul li {
+    background-color: #e9ebf0;
+}
+
+div#content form div#rightLine ul li {
+    background-color: #D8DBE2;
+}
+
+div#content form div#rightLine {
+    width: 75px;
+    float: right;
+    position: relative;
+    left: -2px;
+}
+
+div#content form div#numbers ul li p,
+div#content form div#rightLine ul li p {
+    text-align: center;    
+}
+
+div#content form div#numbers ul li:hover,
+div#content form div#rightLine ul li:hover {
+    background-color: #58A4B0;
+    transition-duration: 0.2s;
+}
+
+div#content form div#numbers ul li:active,
+div#content form div#rightLine ul li:active {
+    background-color: #366a72;
+}
