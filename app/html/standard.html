@@ -17,58 +17,59 @@
         <h3 class="title"></h3>
         <form>
             <label id="operation"></label><br />
-            <input id="result" type="text"></input><br />
+            <label id="result" type="text"></label>
             <div id="memory">
                 <ul>
-                    <li><button>MC</button></li>
-                    <li><button>MR</button></li>
-                    <li><button>M+</button></li>
-                    <li><button>M-</button></li>
-                    <li><button>MS</button></li>
-                    <li><button>M</button></li>
+                    <li><p>MC</p></li>
+                    <li><p>MR</p></li>
+                    <li><p>M+</p></li>
+                    <li><p>M-</p></li>
+                    <li><p>MS</p></li>
+                    <li><p>M</p></li>
                 </ul>
             </div>
             <div id="line1">
                 <ul>
-                    <li><button>%</button></li>
-                    <li><button>CE</button></li>
-                    <li><button>C</button></li>
-                    <li><button>BS</button></li>
+                    <li><p>%</p></li>
+                    <li><p>CE</p></li>
+                    <li onclick="erase()"><p>C</p></li>
+                    <li><p>BS</p></li>
                 </ul>
             </div>
             <div id="line2">
                 <ul>
-                    <li><button>1/x</button></li>
-                    <li><button>x<sup>2</sup></button></li>
-                    <li><button>&radic;&nbsp;x&nbsp;</button></li>
-                    <li><button>÷</button></li>
+                    <li><p>1/x</p></li>
+                    <li onclick="powerTwo()"><p>x<sup>2</sup></p></li>
+                    <li onclick="squareRoot()"><p>&radic;&nbsp;x&nbsp;</p></li>
+                    <li onclick="addOperant('Divide')"><p>÷</p></li>
                 </ul>
             </div>
             <div id="numbers">
                 <ul>
-                    <li><p>7</p></li>
-                    <li><p>8</p></li>
-                    <li><p>9</p></li>
-                    <li><p>4</p></li>
-                    <li><p>5</p></li>
-                    <li><p>6</p></li>
-                    <li><p>1</p></li>
-                    <li><p>2</p></li>
-                    <li><p>3</p></li>
+                    <li onclick="numbers.addDigit(numbers.seven)"><p>7</p></li>
+                    <li onclick="numbers.addDigit(numbers.eight)"><p>8</p></li>
+                    <li onclick="numbers.addDigit(numbers.nine)"><p>9</p></li>
+                    <li onclick="numbers.addDigit(numbers.four)"><p>4</p></li>
+                    <li onclick="numbers.addDigit(numbers.five)"><p>5</p></li>
+                    <li onclick="numbers.addDigit(numbers.six)"><p>6</p></li>
+                    <li onclick="numbers.addDigit(numbers.one)"><p>1</p></li>
+                    <li onclick="numbers.addDigit(numbers.two)"><p>2</p></li>
+                    <li onclick="numbers.addDigit(numbers.three)"><p>3</p></li>
                     <li><p>±</p></li>
-                    <li><p>0</p></li>
-                    <li><p>.</p></li>
+                    <li onclick="numbers.addDigit(numbers.zero)"><p>0</p></li>
+                    <li onclick="numbers.addDigit(numbers.dot)"><p>.</p></li>
                 </ul>
             </div>
             <div id="rightLine">
                 <ul>
-                    <li><p>×</p></li>
-                    <li><p>-</p></li>
-                    <li><p>+</p></li>
-                    <li><p>=</p></li>
+                    <li onclick="addOperant('Multiply')"><p>×</p></li>
+                    <li onclick="addOperant('Substract')"><p>-</p></li>
+                    <li onclick="addOperant('Add')"><p>+</p></li>
+                    <li onclick="result()"><p>=</p></li>
                 </ul>
             </div>
         </form>
     </div>
+    <script src="../js/standard.js"></script>
 </body>
 </html>
