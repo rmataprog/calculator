@@ -3,38 +3,145 @@ let number2;
 let oper;
 let flag = true;
 
-function operation(digit1, operant, digit2) {
-    this.digit1 = digit1;
-    this.digit2 = digit2;
-    this.operant = operant;
+function operation() {
+    this.numbers = ['1','2','3','4','5','6','7','8','9','0','.'];
+    this.operationsCouple = ['×','-','+','÷'];
+    this.operationsSingle = ['%','power2','root','inverser','+/-'];
+    this.flag = true;
+    this.digit1 = '';
+    this.digit2 = '';
+    this.operant = '';
+    this.type = function(digit) {
+        if ( this.numbers.includes(digit) ) {
+            if ( this.operant === '' ) {
+                if ( this.flag === true ) {
+                    this.digit1 += digit;
+                    document.getElementById('result').textContent = this.digit1;
+                } else {
+                    this.digit1 = digit;
+                    document.getElementById('result').textContent = this.digit1;
+                    this.flag = true;
+                }
+            } else {
+                if ( this.operationsCouple.includes(this.operant) ) {
+                    this.digit2 += digit;
+                    document.getElementById('result').textContent = this.digit2;
+                }
+            }
+        } else {
+            if ( this.operationsCouple.includes(digit) ) {
+                if ( this.digit1 === '' ) {
+                    this.digit1 = '0';
+                    this.operant = digit;
+                    document.getElementById('result').textContent = this.digit1;
+                    this.flag = false;
+                } else {
+                    if ( this.digit2 === '' ) {
+                        this.operant = digit;
+                        document.getElementById('result').textContent = this.digit1;
+                        this.flag = false;
+                    } else {
+                        document.getElementById('result').textContent = this.result();
+                        this.digit1 = this.result();
+                        this.digit2 = '';
+                        this.operant = '';
+                        this.flag = false;
+                    }
+                }
+            } else {
+                if ( digit === '=' ) {
+                    if ( this.digit1 === '' ) {
+                        document.getElementById('result').textContent = '0';
+                    } else {
+                        if ( this.operant === '' ) {
+                            document.getElementById('result').textContent = this.digit1;
+                            this.flag = false;
+                        } else {
+                            if ( this.digit2 === '' ) {
+                                this.digit2 = this.digit1;
+                                document.getElementById('result').textContent = this.result();
+                                this.digit1 = this.result();
+                                this.digit2 = '';
+                                this.operant = '';
+                                this.flag = false;
+                            } else {
+                                document.getElementById('result').textContent = this.result();
+                                this.digit1 = this.result();
+                                this.digit2 = '';
+                                this.operant = '';
+                                this.flag = false;
+                            }
+                        }
+                    }
+                } else {
+                    if ( this.operationsSingle.includes(digit) ) {
+                        if( this.digit1 === '' ) {
+                            if ( digit === 'inverser' ) {
+                                document.getElementById('result').textContent = 'You can\'t divide by zero';
+                            } else {
+                                document.getElementById('result').textContent = '0';
+                            }
+                        } else {
+                            this.operant = digit;
+                            document.getElementById('result').textContent = this.singleMethod();
+                            this.digit1 = this.singleMethod();
+                            this.digit2 = '';
+                            this.operant = '';
+                            this.flag = false;
+                        }
+                    }
+                }
+            }
+        }
+    };
     this.result = function() {
-        number2 = undefined;
-        oper = undefined;
-        if ( this.operant === 'Add' ) {
+        if ( this.operant === '+' ) {
             let x = parseFloat(this.digit1) + parseFloat(this.digit2);
-            number1 = x;
             return x.toFixed(3);
-        } else if ( this.operant === 'Substract' ) {
+        } else if ( this.operant === '-' ) {
             let x = parseFloat(this.digit1) - parseFloat(this.digit2);
-            number1 = x;
             return x.toFixed(3);
-        } else if ( this.operant === 'Multiply' ) {
+        } else if ( this.operant === '×' ) {
             let x = parseFloat(this.digit1) * parseFloat(this.digit2);
-            number1 = x;
             return x.toFixed(3);
-        } else if ( this.operant === 'Divide' ) {
+        } else if ( this.operant === '÷' ) {
             if ( parseFloat(this.digit2) !== 0.0 ) {
                 let x = parseFloat(this.digit1) / parseFloat(this.digit2);
-                number1 = x;
                 return x.toFixed(3);
             } else {
                 return 'You can\'t divide by zero';
             }
-        } else if ( this.operant === undefined ) {
-            return number1;
         }
+    };
+    this.singleMethod = function() {
+        if ( this.operant === '%' ) {
+            return parseFloat(this.digit1) / 100;
+        } else if ( this.operant === 'power2' ) {
+            return Math.pow(parseFloat(this.digit1), 2);
+        } else if ( this.operant === 'root' ) {
+            if ( parseFloat(this.digit1) >= 0.00 ) {
+                return Math.sqrt(parseFloat(this.digit1));
+            } else {
+                return 'Not possible';
+            }
+        } else if ( this.operant === 'inverser' ) {
+            if (parseFloat(this.digit1) > 0.0 || parseFloat(this.digit1) < 0.0) {
+                return 1 / parseFloat(this.digit1);
+            } else {
+                return 'You cannot divide by zero';
+            }
+        } else if ( this.operant === '+/-' ) {
+            return this.digit1*(-1);
+        }
+    };
+    this.clearScreen = function() {
+        this.digit1 = '';
+        this.digit2 = '';
+        this.operant = '';
+        this.flag = true;
+        document.getElementById('result').textContent = '0';
     }
-}
+};
 
 let numbers = {
     one: 1,
@@ -141,3 +248,6 @@ function plusMinus() {
         document.getElementById('result').textContent = number2;
     }
 }
+
+document.getElementById('result').textContent = '0';
+let theOperation = new operation();

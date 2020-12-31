@@ -30,42 +30,42 @@
             </div>
             <div id="line1">
                 <ul>
-                    <li onclick="percentage()"><p>%</p></li>
+                    <li onclick="theOperation.type('%')"><p>%</p></li>
                     <li><p class="symbol">CE</p></li>
-                    <li onclick="clearScreen()"><p class="symbol">C</p></li>
+                    <li onclick="theOperation.clearScreen()"><p class="symbol">C</p></li>
                     <li><img src="../img/icons/backspace(1).svg" alt="BackSpace" title="BackSpace"></li>
                 </ul>
             </div>
             <div id="line2">
                 <ul>
-                    <li onclick="inverse()"><p class="symbol">1/x</p></li>
-                    <li onclick="powerTwo()"><p class="symbol">x<sup>2</sup></p></li>
-                    <li onclick="squareRoot()"><p class="symbol">&#8730</p></li>
-                    <li onclick="addOperant('Divide')"><p>÷</p></li>
+                    <li onclick="theOperation.type('inverser')"><p class="symbol">1/x</p></li>
+                    <li onclick="theOperation.type('power2')"><p class="symbol">x<sup>2</sup></p></li>
+                    <li onclick="theOperation.type('root')"><p class="symbol">&#8730</p></li>
+                    <li onclick="theOperation.type('÷')"><p>÷</p></li>
                 </ul>
             </div>
             <div id="numbers">
                 <ul>
-                    <li onclick="numbers.addDigit(numbers.seven)"><p>7</p></li>
-                    <li onclick="numbers.addDigit(numbers.eight)"><p>8</p></li>
-                    <li onclick="numbers.addDigit(numbers.nine)"><p>9</p></li>
-                    <li onclick="numbers.addDigit(numbers.four)"><p>4</p></li>
-                    <li onclick="numbers.addDigit(numbers.five)"><p>5</p></li>
-                    <li onclick="numbers.addDigit(numbers.six)"><p>6</p></li>
-                    <li onclick="numbers.addDigit(numbers.one)"><p>1</p></li>
-                    <li onclick="numbers.addDigit(numbers.two)"><p>2</p></li>
-                    <li onclick="numbers.addDigit(numbers.three)"><p>3</p></li>
-                    <li onclick="plusMinus()"><p>±</p></li>
-                    <li onclick="numbers.addDigit(numbers.zero)"><p>0</p></li>
-                    <li onclick="numbers.addDigit(numbers.dot)"><p>.</p></li>
+                    <li onclick="theOperation.type('7')"><p>7</p></li>
+                    <li onclick="theOperation.type('8')"><p>8</p></li>
+                    <li onclick="theOperation.type('9')"><p>9</p></li>
+                    <li onclick="theOperation.type('4')"><p>4</p></li>
+                    <li onclick="theOperation.type('5')"><p>5</p></li>
+                    <li onclick="theOperation.type('6')"><p>6</p></li>
+                    <li onclick="theOperation.type('1')"><p>1</p></li>
+                    <li onclick="theOperation.type('2')"><p>2</p></li>
+                    <li onclick="theOperation.type('3')"><p>3</p></li>
+                    <li onclick="theOperation.type('+/-')"><p>±</p></li>
+                    <li onclick="theOperation.type('0')"><p>0</p></li>
+                    <li onclick="theOperation.type('.')"><p>.</p></li>
                 </ul>
             </div>
             <div id="rightLine">
                 <ul>
-                    <li onclick="addOperant('Multiply')"><p>×</p></li>
-                    <li onclick="addOperant('Substract')"><p>-</p></li>
-                    <li onclick="addOperant('Add')"><p>+</p></li>
-                    <li onclick="result()" id="equal"><p>=</p></li>
+                    <li onclick="theOperation.type('×')"><p>×</p></li>
+                    <li onclick="theOperation.type('-')"><p>-</p></li>
+                    <li onclick="theOperation.type('+')"><p>+</p></li>
+                    <li onclick="theOperation.type('=')" id="equal"><p>=</p></li>
                 </ul>
             </div>
         </form>
