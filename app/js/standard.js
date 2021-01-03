@@ -1,5 +1,4 @@
 function operation() {
-    this.operations = [];
     this.screenStr = '';
     this.numbers = ['1','2','3','4','5','6','7','8','9','0','.'];
     this.operationsCouple = ['×','-','+','÷'];
@@ -48,7 +47,6 @@ function operation() {
                         document.getElementById('result').textContent = this.result();
                         this.digit1 = this.result();
                         this.screenStr += ` = ${this.digit1}`;
-                        this.operations.push(this.screenStr);
                         this.memoryList();
                         this.screenStr = this.digit1;
                         this.digit2 = '';
@@ -60,11 +58,13 @@ function operation() {
                 if ( digit === '=' ) {
                     if ( this.digit1 === '' ) {
                         document.getElementById('result').textContent = '0';
-                        this.operations.push('= 0');
+                        this.screenStr = '= 0';
+                        this.memoryList();
+                        this.screenStr = '';
                     } else {
                         if ( this.operant === '' ) {
                             document.getElementById('result').textContent = this.digit1;
-                            this.operations.push(`= ${this.digit1}`);
+                            this.screenStr = `= ${this.digit1}`;
                             this.memoryList();
                             this.flag = false;
                         } else {
@@ -73,7 +73,6 @@ function operation() {
                                 this.digit2 = this.digit1;
                                 document.getElementById('result').textContent = result;
                                 this.screenStr += `${this.digit2} = ${result}`;
-                                this.operations.push(this.screenStr);
                                 this.memoryList();
                                 this.digit1 = result;
                                 this.digit2 = '';
@@ -83,7 +82,6 @@ function operation() {
                                 let result = this.result();
                                 document.getElementById('result').textContent = result;
                                 this.screenStr += ` = ${result}`;
-                                this.operations.push(this.screenStr);
                                 this.memoryList();
                                 this.digit1 = result;
                                 this.digit2 = '';
@@ -98,14 +96,14 @@ function operation() {
                         if( this.digit1 === '' ) {
                             if ( digit === 'inverser' ) {
                                 document.getElementById('result').textContent = 'You can\'t divide by zero';
-                                this.screenStr = '';
-                                this.operations.push('You can\'t divide by zero');
+                                this.screenStr = 'You can\'t divide by zero';
                                 this.memoryList();
+                                this.screenStr = '';
                             } else {
                                 document.getElementById('result').textContent = '0';
-                                this.screenStr = '';
-                                this.operations.push('= 0');
+                                this.screenStr = '= 0';
                                 this.memoryList();
+                                this.screenStr = '';
                             }
                         } else {
                             this.operant = digit;
@@ -130,7 +128,6 @@ function operation() {
                             let result = this.singleMethod();
                             document.getElementById('result').textContent = result;
                             this.screenStr = `${wayOfPrinting} = ${result}`;
-                            this.operations.push(this.screenStr);
                             this.memoryList();
                             this.digit1 = result;
                             this.screenStr = this.digit1;
@@ -192,17 +189,11 @@ function operation() {
         document.getElementById('result').textContent = '0';
     };
     this.memoryList = function() {
-        document.getElementById('memoryList').setAttribute('class', 'visible');
-        let theList = document.getElementById('memoryList');
-        let msg = '';
-        if(this.operations.length>0) {
-            for(let i=0; i<this.operations.length; i++) {
-                msg += `<li>${this.operations[i]}</li>`;
-            };
-            theList.innerHTML = msg;
-        } else {
-            theList.innerHTML = `<li></li>`;
-        }
+        let newEl = document.createElement('li');
+        let operationText = document.createTextNode(this.screenStr);
+        newEl.appendChild(operationText);
+        let target = document.getElementById('memoryList');
+        target.appendChild(newEl);
     };
     this.showMemoryList = function() {
         if(document.getElementById('memoryList').getAttribute('class') === 'visible') {
@@ -212,8 +203,11 @@ function operation() {
         };
     };
     this.clearMemory = function() {
-        this.operations = [];
-        this.memoryList();
+        let elements = document.getElementById('memoryList').getElementsByTagName('li');
+        let container = document.getElementById('memoryList');
+        for(let i = (elements.length-1); i > -1; i--) {
+            container.removeChild(elements[i]);
+        }
     };
     this.backspace = function() {
         if (this.flag) {
