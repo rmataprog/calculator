@@ -13,14 +13,20 @@
         <div><a>Scientific</a></div>
         <div><a>Programmer</a></div>
     </nav>
-    <h2 class="title">Standard</h2>
+    <div id="calcTop">
+        <h2 class="title">Standard</h2>
+        <button onclick="theOperation.showMemoryList()">
+            <img src="../img/icons/memory-card.svg">
+        </button>
+        <ul id="memoryList">
+        </ul>
+    </div>
     <div id="content">
         <form>
-            <label id="operation"></label><br />
             <label id="result" type="text"></label>
             <div id="memory">
                 <ul>
-                    <li><p>MC</p></li>
+                    <li onclick="theOperation.clearMemory()"><p>MC</p></li>
                     <li><p>MR</p></li>
                     <li><p>M+</p></li>
                     <li><p>M-</p></li>
@@ -33,7 +39,9 @@
                     <li onclick="theOperation.type('%')"><p>%</p></li>
                     <li><p class="symbol">CE</p></li>
                     <li onclick="theOperation.clearScreen()"><p class="symbol">C</p></li>
-                    <li><img src="../img/icons/backspace(1).svg" alt="BackSpace" title="BackSpace"></li>
+                    <li onclick="theOperation.backspace()">
+                        <img src="../img/icons/backspace(1).svg" alt="BackSpace" title="BackSpace">
+                    </li>
                 </ul>
             </div>
             <div id="line2">

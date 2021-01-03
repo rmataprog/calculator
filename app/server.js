@@ -7,6 +7,7 @@ const styleSheetStandard = readFileSync('css/standard.css', {encoding: 'latin1'}
 const scriptStandard = readFileSync('js/standard.js');
 const iconBack = readFileSync('img/icons/backspace(1).svg');
 const iconList = readFileSync('img/icons/list.svg');
+const iconMemory = readFileSync('img/icons/memory-card.svg');
 const font = readFileSync('css/fonts/Valentine.ttf');
 
 const server = http.createServer((req, res) => {
@@ -37,6 +38,10 @@ const server = http.createServer((req, res) => {
     } else if (req.url == '/css/fonts/Valentine.ttf') {
         res.writeHead(200, {'Content-Type': 'font/ttf'});
         res.write(font);
+        res.end();
+    } else if (req.url == '/img/icons/memory-card.svg') {
+        res.writeHead(200, {'Content-Type': 'image/svg+xml'});
+        res.write(iconMemory);
         res.end();
     } else {
         res.end('invalid request');

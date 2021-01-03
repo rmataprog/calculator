@@ -9,13 +9,6 @@ body {
     background-color: #473198;
 }
 
-h2.title {
-    color: #ADFC92;
-    position: absolute;
-    left: 361px;
-    top: 10px;
-}
-
 nav {
     width: 50px;
 }
@@ -53,6 +46,7 @@ div#content {
     top: 60px;
     background-color: #9BF3F0;
     padding: 1px;
+    z-index: 1;
 }
 
 div#content form label#result {
@@ -226,4 +220,57 @@ div#content form div#rightLine ul li#equal:hover {
 div#content form div#numbers ul li:active,
 div#content form div#rightLine ul li:active {
     background-color: #366a72;
+}
+
+div#calcTop {
+    position: absolute;
+    left: 361px;
+    top: 10px;
+}
+
+div#calcTop h2.title {
+    color: #ADFC92;
+    float: left;
+    width: 151px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+div#calcTop button {
+    background-color:#473198;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    left: 110px;
+    top: -5px;
+}
+
+div#calcTop img {
+    width: 30px;
+    height: 30px;
+}
+
+div#calcTop ul.visible {
+    z-index: 2;
+    list-style-type: none;
+    position: relative;
+    left: 320px;
+    padding-left: 0px;
+    width: 302px;
+    text-align: right;
+    height: 500px;
+    overflow: auto;
+}
+
+div#calcTop ul.notVisible {
+    z-index: 0;
+    list-style-type: none;
+    position: relative;
+}
+
+div#calcTop ul.visible li {
+    color: #9BF3F0;
+    font-size: 24px;
 }
