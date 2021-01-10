@@ -274,3 +274,9 @@ div#calcTop ul.visible li {
     color: #9BF3F0;
     font-size: 24px;
 }
+
+h3 {
+    position: relative;
+    left: 400px;
+    color: #9BF3F0;
+}

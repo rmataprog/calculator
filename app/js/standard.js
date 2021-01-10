@@ -2,7 +2,7 @@ function operation() {
     this.screenStr = '';
     this.numbers = ['1','2','3','4','5','6','7','8','9','0','.'];
     this.operationsCouple = ['×','-','+','÷'];
-    this.operationsSingle = ['%','power2','root','inverser','+/-'];
+    this.operationsSingle = ['%','x2','√','1/x','±'];
     this.flag = true;
     this.digit1 = '';
     this.digit2 = '';
@@ -94,7 +94,7 @@ function operation() {
                 } else {
                     if ( this.operationsSingle.includes(digit) ) {
                         if( this.digit1 === '' ) {
-                            if ( digit === 'inverser' ) {
+                            if ( digit === '1/x' ) {
                                 document.getElementById('result').textContent = 'You can\'t divide by zero';
                                 this.screenStr = 'You can\'t divide by zero';
                                 this.memoryList();
@@ -112,16 +112,16 @@ function operation() {
                                 case '%':
                                     wayOfPrinting = `toPercentage(${this.digit1})`;
                                     break;
-                                case 'power2':
+                                case 'x2':
                                     wayOfPrinting = `squareOf(${this.digit1})`;
                                     break;
-                                case 'root':
+                                case '√':
                                     wayOfPrinting = `squareRootOf(${this.digit1})`;
                                     break;
-                                case 'inverser':
+                                case '1/x':
                                     wayOfPrinting = `1 / ${this.digit1}`;
                                     break;
-                                case '+/-':
+                                case '±':
                                     wayOfPrinting = `${this.digit1} x (-1)`;
                                     break;
                             }
@@ -162,21 +162,21 @@ function operation() {
     this.singleMethod = function() {
         if ( this.operant === '%' ) {
             return (parseFloat(this.digit1) / 100).toFixed(3);
-        } else if ( this.operant === 'power2' ) {
+        } else if ( this.operant === 'x2' ) {
             return (Math.pow(parseFloat(this.digit1), 2)).toFixed(3);
-        } else if ( this.operant === 'root' ) {
+        } else if ( this.operant === '√' ) {
             if ( parseFloat(this.digit1) >= 0.00 ) {
                 return (Math.sqrt(parseFloat(this.digit1))).toFixed(3);
             } else {
                 return 'Not possible';
             }
-        } else if ( this.operant === 'inverser' ) {
+        } else if ( this.operant === '1/x' ) {
             if (parseFloat(this.digit1) > 0.0 || parseFloat(this.digit1) < 0.0) {
                 return (1 / parseFloat(this.digit1)).toFixed(3);
             } else {
                 return 'You cannot divide by zero';
             }
-        } else if ( this.operant === '+/-' ) {
+        } else if ( this.operant === '±' ) {
             return this.digit1*(-1);
         }
     };
@@ -207,7 +207,9 @@ function operation() {
         let container = document.getElementById('memoryList');
         for(let i = (elements.length-1); i > -1; i--) {
             container.removeChild(elements[i]);
-        }
+        };
+
+        document.getElementById('count').textContent = 0;
     };
     this.backspace = function() {
         if (this.flag) {
@@ -233,4 +235,96 @@ function operation() {
 };
 
 document.getElementById('result').textContent = '0';
+
 let theOperation = new operation();
+
+/* this is for adding numbers, plus/minus and dot */
+
+function addChar(e) {
+    let target = e.target;
+    if (target.localName === 'p') {
+        switch (target.textContent) {
+            case 'C':
+                theOperation.clearScreen();
+                break;
+            case 'MC':
+                theOperation.clearMemory();
+                break;
+            default:
+                theOperation.type(target.textContent);
+                break;
+        }
+    } else if (target.localName === 'li') {
+        switch (target.textContent) {
+            case 'C':
+                theOperation.clearScreen();
+                break;
+            case 'MC':
+                theOperation.clearMemory();
+                break;
+            default:
+                theOperation.type(target.textContent);
+                break;
+        }
+        if (target.id === 'BackSpace') {
+            theOperation.backspace();
+        }
+    } else if (target.localName === 'img') {
+        theOperation.backspace();
+    };
+}
+
+let numbers = document.getElementById('numbers');
+
+numbers.addEventListener('click', addChar, false);
+
+/* this is for adding operations x + - = */
+
+let rightLine = document.getElementById('rightLine');
+
+rightLine.addEventListener('click', addChar, false);
+
+/* this is for operations in line 2 */
+
+let line2 = document.getElementById('line2');
+
+line2.addEventListener('click', addChar, false);
+
+/* this is for operations in line 1 */
+
+let line1 = document.getElementById('line1');
+
+line1.addEventListener('click', addChar, false);
+
+/* this is for operations in memory */
+
+let memoryLine = document.getElementById('memory');
+
+memoryLine.addEventListener('click', addChar, false);
+
+/* this is for switchng the memory */
+
+function triggerList() {
+    theOperation.showMemoryList();
+}
+
+let showMemo = document.getElementById('showMemo');
+
+showMemo.addEventListener('click', triggerList, false);
+
+/* this is for adding up the amount of operations in memory */
+
+function counter(e) {
+
+    let target = e.target;
+
+    let count = document.getElementById('count');
+
+    let amount = target.parentElement.getElementsByTagName('li').length;
+
+    count.textContent = amount;
+}
+
+let counting = document.getElementById('memoryList');
+
+counting.addEventListener('DOMNodeInserted', counter, false);
