@@ -328,3 +328,30 @@ function counter(e) {
 let counting = document.getElementById('memoryList');
 
 counting.addEventListener('DOMNodeInserted', counter, false);
+
+/* this for getting the key pressed */
+
+function pressedKey(e) {
+    if ([43,45,46,48,49,50,51,52,53,54,55,56,57].includes(e.keyCode)) {
+        theOperation.type(String.fromCharCode(e.keyCode));
+    } else if ([42,47,8,13].includes(e.keyCode)) {
+        switch (e.keyCode) {
+            case 42:
+                theOperation.type('×');
+                break;
+            case 47:
+                theOperation.type('÷');
+                break;
+            case 8:
+                theOperation.backspace();
+                break;
+            case 13:
+                theOperation.type('=');
+                break;
+        }
+    }
+}
+
+let allScreen = document.getElementsByTagName('body');
+
+allScreen[0].addEventListener('keypress', pressedKey, false);
